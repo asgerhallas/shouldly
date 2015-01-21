@@ -70,7 +70,13 @@ namespace Shouldly
            ShouldMethod = shouldlyFrame.GetMethod().Name;
            UnderlyingShouldMethod = shouldlyFrame.GetMethod();
            FileName = fileName;
+
+#if DEBUG
            LineNumber = originatingFrame.GetFileLineNumber() - 1;
+#else
+           LineNumber = originatingFrame.GetFileLineNumber() - 2;
+#endif
+
            OriginatingFrame = originatingFrame;
            Expected = expected;
            Actual = actual;
